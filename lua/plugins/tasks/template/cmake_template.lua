@@ -91,6 +91,8 @@ local function get_presets(dir)
 end
 
 return {
+  name = 'cmake presets',
+
   generator = function(search)
     local presets_dir = get_presets_dir(search.dir)
     if not presets_dir then return {} end

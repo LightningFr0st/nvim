@@ -2,11 +2,11 @@ local gh = require('util').gh
 
 vim.pack.add { gh 'stevearc/overseer.nvim' }
 
-require('overseer').setup {
-  template_dirs = {
-    'plugins.tasks.template',
-  },
-}
+local overseer = require 'overseer'
+
+overseer.setup {}
+
+overseer.register_template(require 'plugins.tasks.template.cmake_template')
 
 vim.keymap.set('n', '<leader>or', '<cmd>OverseerRun<CR>', { desc = 'Overseer run task' })
 vim.keymap.set('n', '<leader>oo', '<cmd>OverseerToggle<CR>', { desc = 'Overseer toggle' })
