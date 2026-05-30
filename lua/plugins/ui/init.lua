@@ -1,0 +1,8 @@
+require 'plugins.ui.guess-indent'
+require 'plugins.ui.devicons'
+require 'plugins.ui.which-key'
+require 'plugins.ui.colorscheme'
+require 'plugins.ui.todo-comments'
+require 'plugins.ui.mini'
+require 'plugins.ui.autopairs'
+require 'plugins.ui.neo-tree'
