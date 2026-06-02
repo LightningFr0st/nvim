@@ -1,6 +1,6 @@
 local function make_configure_template(preset, display_name, cwd)
   return {
-    name = 'CMake Configure Fresh Preset: ' .. display_name,
+    name = 'cmake configure: ' .. display_name,
 
     builder = function()
       return {
@@ -15,7 +15,7 @@ end
 
 local function make_build_target_template(preset, display_name, cwd)
   return {
-    name = 'CMake Build Target: ' .. display_name,
+    name = 'cmake build: ' .. display_name,
 
     params = {
       target = {
