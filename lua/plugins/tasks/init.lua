@@ -4,7 +4,11 @@ vim.pack.add { gh 'stevearc/overseer.nvim' }
 
 local overseer = require 'overseer'
 
-overseer.setup {}
+overseer.setup {
+  disable_template_modules = {
+    'overseer.template.npm',
+  },
+}
 
 overseer.register_template(require 'plugins.tasks.template.cmake_template')
 
