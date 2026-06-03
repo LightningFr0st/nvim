@@ -4,6 +4,7 @@ local plugins = {
   gh 'nvim-lua/plenary.nvim',
   gh 'nvim-telescope/telescope.nvim',
   gh 'nvim-telescope/telescope-ui-select.nvim',
+  gh 'nvim-telescope/telescope-live-grep-args.nvim',
 }
 
 if vim.fn.executable 'make' == 1 then table.insert(plugins, gh 'nvim-telescope/telescope-fzf-native.nvim') end
@@ -22,13 +23,14 @@ telescope.setup {
 
 pcall(telescope.load_extension, 'fzf')
 pcall(telescope.load_extension, 'ui-select')
+pcall(telescope.load_extension, 'live_grep_args')
 
 vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = 'Search help' })
 vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = 'Search keymaps' })
 vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = 'Search files' })
 vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = 'Search Telescope pickers' })
 vim.keymap.set({ 'n', 'v' }, '<leader>sw', builtin.grep_string, { desc = 'Search current word' })
-vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = 'Search by grep' })
+vim.keymap.set('n', '<leader>sg', function() telescope.extensions.live_grep_args.live_grep_args() end, { desc = 'Search by grep' })
 vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = 'Search diagnostics' })
 vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = 'Search resume' })
 vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = 'Search recent files' })
