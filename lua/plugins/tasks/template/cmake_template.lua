@@ -20,8 +20,6 @@ local function make_build_target_template(preset, display_name, cwd)
     params = {
       target = {
         type = 'string',
-        name = 'Target',
-        desc = 'CMake target name. Multiple targets may be separated by spaces.',
       },
     },
 
