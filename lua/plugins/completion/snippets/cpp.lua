@@ -27,6 +27,19 @@ local templates = {
   }, '\n'),
 
   assert_only = 'PF_ASSERT({});',
+
+  observable_group = table.concat({
+    'const auto iterable = {}->iterable();',
+    'auto components = iterable.components();',
+    'for (auto it = components.begin(); it != components.end(); ++it)',
+    '{{',
+    '    auto* {} = static_cast<{}*>(*it);',
+    '    if (it.is_field_changed({}->{}))',
+    '    {{',
+    '        ',
+    '    }}',
+    '}}',
+  }, '\n'),
 }
 
 local function get_nodes()
@@ -56,6 +69,16 @@ local function get_if_null_nodes()
   }
 end
 
+local function get_observable_group_nodes()
+  return {
+    i(1, 'group'),
+    i(2, 'component'),
+    i(3, 'Component'),
+    rep(2),
+    i(4, 'field'),
+  }
+end
+
 return {
   s('gcomp', fmt(templates.read, get_nodes())),
   s('gcompa', fmt(templates.read_assert, get_assert_nodes())),
@@ -66,4 +89,6 @@ return {
   s('wcompi', fmt(templates.write_if_null, get_if_null_nodes())),
 
   s('pfa', fmt(templates.assert_only, { i(1, 'condition') })),
+
+  s('ogroup', fmt(templates.observable_group, get_observable_group_nodes())),
 }
