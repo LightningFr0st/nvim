@@ -8,7 +8,7 @@ require('kanagawa').setup {
   commentStyle = { italic = true },
   keywordStyle = { italic = true },
   statementStyle = { bold = true },
-  transparent = false,
+  transparent = true,
   dimInactive = false,
   terminalColors = true,
   theme = 'dragon',
