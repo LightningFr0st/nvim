@@ -9,11 +9,20 @@ vim.pack.add {
 local dap = require 'dap'
 local dapui = require 'dapui'
 
-dap.set_log_level 'TRACE'
-
 ---@diagnostic disable-next-line: missing-fields
 dapui.setup {
   icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
+  layouts = {
+    {
+      elements = {
+        { id = 'scopes', size = 0.50 },
+        { id = 'stacks', size = 0.25 },
+        { id = 'watches', size = 0.25 },
+      },
+      size = 40,
+      position = 'left',
+    },
+  },
   ---@diagnostic disable-next-line: missing-fields
   controls = {
     icons = {
@@ -47,6 +56,8 @@ vim.keymap.set('n', '<leader>dw', function() require('dapui').elements.watches.a
 vim.keymap.set('n', '<leader>dd', function() require('dap').disconnect() end, { desc = 'Debug: Disconnect' })
 vim.keymap.set('n', '<leader>dt', function() require('dap').terminate() end, { desc = 'Debug: Terminate' })
 vim.keymap.set('n', '<leader>dl', function() require('dap').run_last() end, { desc = 'Debug: Run Last' })
+vim.keymap.set('n', '<leader>db', function() dapui.float_element('breakpoints', { enter = true, width = 80, height = 20 }) end, { desc = 'Debug: Breakpoints' })
+vim.keymap.set('n', '<leader>dc', function() dapui.float_element('console', { enter = true, width = 100, height = 20 }) end, { desc = 'Debug: Console' })
 
 vim.api.nvim_set_hl(0, 'DapBreak', { fg = '#e51400' })
 vim.api.nvim_set_hl(0, 'DapStop', { fg = '#ffcc00' })

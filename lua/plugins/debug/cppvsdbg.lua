@@ -85,34 +85,6 @@ dap.adapters.cppvsdbg = {
 
 dap.configurations.cpp = {
   {
-    name = 'Launch process (cppvsdbg)',
-    type = 'cppvsdbg',
-    request = 'launch',
-
-    program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file') end,
-
-    args = function()
-      local args = vim.fn.input 'Arguments: '
-      return args ~= '' and vim.split(args, ' ') or {}
-    end,
-
-    cwd = vim.fn.getcwd(),
-
-    stopAtEntry = false,
-    externalConsole = false,
-    requireExactSource = false,
-
-    clientID = 'vscode',
-    clientName = 'Visual Studio Code',
-
-    logging = {
-      engineLogging = true,
-      trace = true,
-      traceResponse = true,
-      moduleLoad = false,
-    },
-  },
-  {
     name = 'Attach to process (cppvsdbg)',
     type = 'cppvsdbg',
     request = 'attach',
@@ -132,6 +104,35 @@ dap.configurations.cpp = {
       engineLogging = true,
       trace = true,
       traceResponse = true,
+      moduleLoad = false,
+    },
+  },
+
+  {
+    name = 'Launch process (cppvsdbg)',
+    type = 'cppvsdbg',
+    request = 'launch',
+
+    program = function() return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '\\', 'file') end,
+
+    args = function()
+      local args = vim.fn.input 'Arguments: '
+      return args ~= '' and vim.split(args, ' ') or {}
+    end,
+
+    cwd = vim.fn.getcwd(),
+
+    stopAtEntry = false,
+    externalConsole = true,
+    requireExactSource = false,
+
+    clientID = 'vscode',
+    clientName = 'Visual Studio Code',
+
+    logging = {
+      engineLogging = false,
+      trace = false,
+      traceResponse = false,
       moduleLoad = false,
     },
   },
