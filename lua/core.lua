@@ -27,6 +27,11 @@ vim.o.expandtab = true
 vim.o.list = true
 vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
+vim.o.shell = 'pwsh'
+vim.o.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command'
+vim.o.shellquote = ''
+vim.o.shellxquote = ''
+
 vim.schedule(function() vim.o.clipboard = 'unnamedplus' end)
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
