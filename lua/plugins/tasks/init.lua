@@ -8,6 +8,12 @@ overseer.setup {
   disable_template_modules = {
     'overseer.template.npm',
   },
+  component_aliases = {
+    default = {
+      'on_exit_set_status',
+      'on_complete_notify',
+    },
+  },
 }
 
 overseer.register_template(require 'plugins.tasks.template.cmake_template')
